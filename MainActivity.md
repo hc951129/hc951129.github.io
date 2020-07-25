@@ -1,52 +1,30 @@
 ## MainActivity.java
 
-package com.example.notepad;
+    package com.example.notepad;
 
-import androidx.appcompat.app.AlertDialog;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.DatePickerDialog;
-
-import android.app.TimePickerDialog;
-
-import android.content.Context;
-
-import android.content.DialogInterface;
-
-import android.os.Bundle;
-
-import android.view.KeyEvent;
-
-import android.view.LayoutInflater;
-
-import android.view.View;
-
-import android.widget.AdapterView;
-
-import android.widget.Button;
-
-import android.widget.DatePicker;
-
-import android.widget.EditText;
-
-import android.widget.ImageView;
-
-import android.widget.LinearLayout;
-
-import android.widget.ListView;
-
-import android.widget.TextView;
-
-import android.widget.TimePicker;
-
-import android.widget.Toast;
-
-import java.util.ArrayList;
-
-import java.util.Calendar;
-
-import java.util.List;
+    import androidx.appcompat.app.AlertDialog;
+    import androidx.appcompat.app.AppCompatActivity;
+    import android.app.DatePickerDialog;
+    import android.app.TimePickerDialog;
+    import android.content.Context;
+    import android.content.DialogInterface;
+    import android.os.Bundle;
+    import android.view.KeyEvent;
+    import android.view.LayoutInflater; 
+    import android.view.View;
+    import android.widget.AdapterView;
+    import android.widget.Button;
+    import android.widget.DatePicker;
+    import android.widget.EditText;
+    import android.widget.ImageView;
+    import android.widget.LinearLayout;
+    import android.widget.ListView;
+    import android.widget.TextView;
+    import android.widget.TimePicker;   
+    import android.widget.Toast;
+    import java.util.ArrayList;
+    import java.util.Calendar;
+    import java.util.List;
 
 ### public class MainActivity extends AppCompatActivity {
 
@@ -178,36 +156,36 @@ import java.util.List;
                         adapter.notifyDataSetChanged();
                     }
                 });
-                //在dialog界面点击修改键弹出新的dialog界面，后来功能简化到同一个dialog界面中
-//                dialog.setNeutralButton("修改", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int which) {
-//                        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//                        LayoutInflater inflater = (LayoutInflater)MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                        LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.dialog_view,null);
-//                        builder.setView(layout);
-//                        final EditText editText1 = (EditText)layout.findViewById(R.id.edit_text1);
-//                        final EditText editText2 = (EditText)layout.findViewById(R.id.edit_text2);
-//                        editText1.setText(pictureItemList.get(i).getName());
-//                        editText2.setText(pictureItemList.get(i).getTimeClock());
-//                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int which2) {
-//                                pictureItemList.get(i).setName(editText1.getText().toString());
-//                                pictureItemList.get(i).setTimeClock(editText2.getText().toString());
-//                                adapter.notifyDataSetChanged();
-//                            }
-//                        });
-//                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                return;
-//                            }
-//                        });
-//                        builder.show();
-//                    }
-//                });
-                dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+              //在dialog界面点击修改键弹出新的dialog界面，后来功能简化到同一个dialog界面中
+              //dialog.setNeutralButton("修改", new DialogInterface.OnClickListener() {
+              //    @Override
+              //     public void onClick(DialogInterface dialogInterface, int which) {
+              //        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+              //        LayoutInflater inflater = (LayoutInflater)MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+              //        LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.dialog_view,null);
+              //        builder.setView(layout);
+              //        final EditText editText1 = (EditText)layout.findViewById(R.id.edit_text1);
+              //        final EditText editText2 = (EditText)layout.findViewById(R.id.edit_text2);
+              //        editText1.setText(pictureItemList.get(i).getName());
+              //        editText2.setText(pictureItemList.get(i).getTimeClock());
+              //        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+              //            @Override
+              //            public void onClick(DialogInterface dialogInterface, int which2) {
+              //                pictureItemList.get(i).setName(editText1.getText().toString());
+              //                pictureItemList.get(i).setTimeClock(editText2.getText().toString());
+              //                adapter.notifyDataSetChanged();
+              //            }
+              //        });
+              //        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+              //            @Override
+              //            public void onClick(DialogInterface dialogInterface, int i) {
+              //                return;
+              //            }
+              //        });
+              //        builder.show();
+              //    }
+              //});
+              dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         pictureItemList.get(i).setName(editText1.getText().toString());
@@ -216,16 +194,15 @@ import java.util.List;
                         adapter.notifyDataSetChanged();
                     }
                 });
-                dialog.setNeutralButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                });
-                dialog.show();
-                return false;
-            }
-        });
-
+              dialog.setNeutralButton("取消", new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialogInterface, int i) {
+                  }
+              });
+              dialog.show();
+              return false;
+          }
+      });
     }
 }
 
