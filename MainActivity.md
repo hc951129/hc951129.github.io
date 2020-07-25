@@ -52,11 +52,11 @@ import java.util.List;
 
     //定义了三个成员变量
     
-    private List<PictureItem> pictureItemList = new ArrayList<>();//用于存储每个Item独立的数据
+        private List<PictureItem> pictureItemList = new ArrayList<>();//用于存储每个Item独立的数据
 
-    private String time;//时间选择器选择的时间
+        private String time;//时间选择器选择的时间
 
-    private String date;//日期选择器选择的日期
+        private String date;//日期选择器选择的日期
 
 #### BrushData方法
         public void BrushData(EditText editText, String string, PictureItemAdapter adapter) {
