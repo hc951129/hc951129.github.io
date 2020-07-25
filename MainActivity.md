@@ -62,7 +62,7 @@ import java.util.List;
 
         public void BrushData(EditText editText, String string, PictureItemAdapter adapter) {
         //数据更新方法，参数1是EditText输入的内容，参数2是选择的时间，参数3是PictureItemAdapter类
-        
+     
             PictureItem initData = new PictureItem(editText.getText().toString(), string, R.drawable.pic_1, null);
             //创建一个新的PictureItem类型的实例initData，里面含有三个参数，第一个是EditText输入的内容，第二个是时间日期，第三个是图片，第四个是后面涉及的“具体内容”
             
@@ -95,12 +95,9 @@ import java.util.List;
 /*      //监听myEditText的Enter键，注释掉了的原因是Enter键用来换行了，新增加了Button“添加”按钮来实现该功能
         editText.setOnKeyListener(new View.OnKeyListener(){
             
-            @Override
-            
-            public boolean onKey(View view, int keyCode, KeyEvent keyEvent){
-            
-                if(keyEvent.getAction()==keyEvent.ACTION_DOWN){
-            
+            @Override            
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent){            
+                if(keyEvent.getAction()==keyEvent.ACTION_DOWN){            
                     if((keyCode == keyEvent.KEYCODE_DPAD_CENTER) || (keyCode == keyEvent.KEYCODE_ENTER)){
                         PictureItem initData = new PictureItem(editText.getText().toString() R.drawable.pic_1);
                         pictureItemList.add(initData);
