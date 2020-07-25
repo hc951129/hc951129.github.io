@@ -58,10 +58,9 @@ import java.util.List;
 
     private String date;//日期选择器选择的日期
 
-####    public void BrushData(EditText editText, String string, PictureItemAdapter adapter) {
-//数据更新方法，参数1是EditText输入的内容，参数2是选择的时间，参数3是PictureItemAdapter类
-        
-        
+#### BrushData方法
+        public void BrushData(EditText editText, String string, PictureItemAdapter adapter) {
+        //数据更新方法，参数1是EditText输入的内容，参数2是选择的时间，参数3是PictureItemAdapter类
         PictureItem initData = new PictureItem(editText.getText().toString(), string, R.drawable.pic_1, null);
         pictureItemList.add(initData);、、
         adapter.notifyDataSetChanged();
