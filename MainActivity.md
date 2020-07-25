@@ -116,7 +116,7 @@
         });
 
 #### 监听Item项的点击事件
-、、、markdown
+```markdown
         //监听listView的Item的点击键
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
