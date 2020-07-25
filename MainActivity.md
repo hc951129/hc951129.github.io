@@ -138,7 +138,7 @@ import java.util.List;
         });
 
 #### 监听Item项的点击事件
-//      监听listView的Item的点击键
+        //监听listView的Item的点击键
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -154,7 +154,7 @@ import java.util.List;
         });
 
 #### 监听Item项的长按事件
-//        监听listView的Item的长按键
+        //监听listView的Item的长按键
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, final View view, final int i, long l) {
