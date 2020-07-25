@@ -48,7 +48,182 @@ import java.util.Calendar;
 
 import java.util.List;
 
-### Markdown
+### public class MainActivity extends AppCompatActivity {
+
+    //定义了三个成员变量
+    
+    private List<PictureItem> pictureItemList = new ArrayList<>();
+
+    private String time;
+
+    private String date;
+
+####    public void BrushData(EditText editText, String string, PictureItemAdapter adapter) {
+        
+        PictureItem initData = new PictureItem(editText.getText().toString(), string, R.drawable.pic_1, null);
+        pictureItemList.add(initData);
+        adapter.notifyDataSetChanged();
+        editText.setText("");
+    }
+
+
+####    @Override
+####    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        final PictureItemAdapter adapter = new PictureItemAdapter(MainActivity.this, R.layout.pic_item, pictureItemList);
+
+        //获取对UI组件的引用
+        final ListView listView = (ListView) findViewById(R.id.list_view);
+        final EditText editText = (EditText) findViewById(R.id.edit_text);
+//        final TextView textView3 = (TextView) findViewById(R.id.text_view3);
+        Button button = (Button) findViewById(R.id.button);
+
+        //将ArrayAdapter绑定到ListView
+        listView.setAdapter(adapter);
+
+//        //监听myEditText的Enter键
+//        editText.setOnKeyListener(new View.OnKeyListener(){
+//            @Override
+//            public boolean onKey(View view, int keyCode, KeyEvent keyEvent){
+//                if(keyEvent.getAction()==keyEvent.ACTION_DOWN){
+//                    if((keyCode == keyEvent.KEYCODE_DPAD_CENTER) || (keyCode == keyEvent.KEYCODE_ENTER)){
+//                        PictureItem initData = new PictureItem(editText.getText().toString() R.drawable.pic_1);
+//                        pictureItemList.add(initData);
+//                        adapter.notifyDataSetChanged();
+//                        editText.setText("");
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            }
+//        });
+
+        //新建列表项
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Calendar calendar = Calendar.getInstance();
+
+//                日期选择器
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        date = year + "年" + (month + 1) + "月" + dayOfMonth + "日";
+                        String string = date + time + "您有新的日程安排";
+                        Toast.makeText(MainActivity.this, string, Toast.LENGTH_SHORT).show();
+
+                        BrushData(editText, (date + "\n" + time), adapter);
+                    }
+                }
+                        , calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+
+//                时间选择器
+                TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                        time = hourOfDay + "时" + minute + "分";
+//                        Toast.makeText(MainActivity.this,time,Toast.LENGTH_SHORT).show();
+                    }
+                }
+                        , calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+                timePickerDialog.show();
+            }
+        });
+
+//        监听listView的Item的点击键
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ImageView imageView = (ImageView) view.findViewById(R.id.image_view);
+                if (pictureItemList.get(i).getImageId() == R.drawable.pic_1) {
+                    imageView.setImageResource(R.drawable.pic_2);
+                    pictureItemList.get(i).setImageId(R.drawable.pic_2);
+                } else if (pictureItemList.get(i).getImageId() == R.drawable.pic_2) {
+                    imageView.setImageResource(R.drawable.pic_1);
+                    pictureItemList.get(i).setImageId(R.drawable.pic_1);
+                }
+            }
+        });
+
+
+//        监听listView的Item的长按键
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, final View view, final int i, long l) {
+                final AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                dialog.setTitle("提示!");
+                dialog.setMessage("请选择您要做出的改变：");
+//                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.dialog_view, null);
+                dialog.setView(layout);
+                final EditText editText1 = (EditText) layout.findViewById(R.id.edit_text1);
+                final EditText editText2 = (EditText) layout.findViewById(R.id.edit_text2);
+                final EditText editText3 = (EditText) layout.findViewById(R.id.edit_text3);
+                editText1.setText(pictureItemList.get(i).getName());
+                editText2.setText(pictureItemList.get(i).getTimeClock());
+                editText3.setText(pictureItemList.get(i).getConcreteContext());
+                dialog.setCancelable(false);
+                dialog.setNegativeButton("删除", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        pictureItemList.remove(i);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+//                dialog.setNeutralButton("修改", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int which) {
+//                        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                        LayoutInflater inflater = (LayoutInflater)MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                        LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.dialog_view,null);
+//                        builder.setView(layout);
+//                        final EditText editText1 = (EditText)layout.findViewById(R.id.edit_text1);
+//                        final EditText editText2 = (EditText)layout.findViewById(R.id.edit_text2);
+//                        editText1.setText(pictureItemList.get(i).getName());
+//                        editText2.setText(pictureItemList.get(i).getTimeClock());
+//                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int which2) {
+//                                pictureItemList.get(i).setName(editText1.getText().toString());
+//                                pictureItemList.get(i).setTimeClock(editText2.getText().toString());
+//                                adapter.notifyDataSetChanged();
+//                            }
+//                        });
+//                        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                return;
+//                            }
+//                        });
+//                        builder.show();
+//                    }
+//                });
+                dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        pictureItemList.get(i).setName(editText1.getText().toString());
+                        pictureItemList.get(i).setTimeClock(editText2.getText().toString());
+                        pictureItemList.get(i).setConcreteContext(editText3.getText().toString());
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                dialog.setNeutralButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                dialog.show();
+                return false;
+            }
+        });
+
+    }
+}
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
