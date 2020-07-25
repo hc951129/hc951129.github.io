@@ -52,20 +52,21 @@ import java.util.List;
 
     //定义了三个成员变量
     
-        private List<PictureItem> pictureItemList = new ArrayList<>();//用于存储每个Item独立的数据
+        private List<PictureItem> pictureItemList = new ArrayList<>();    //用于存储每个Item独立的数据
 
-        private String time;//时间选择器选择的时间
+        private String time;    //时间选择器选择的时间
 
-        private String date;//日期选择器选择的日期
+        private String date;    //日期选择器选择的日期
 
 #### BrushData方法
         public void BrushData(EditText editText, String string, PictureItemAdapter adapter) {
         //数据更新方法，参数1是EditText输入的内容，参数2是选择的时间，参数3是PictureItemAdapter类
-        PictureItem initData = new PictureItem(editText.getText().toString(), string, R.drawable.pic_1, null);
-        pictureItemList.add(initData);、、
-        adapter.notifyDataSetChanged();
-        editText.setText("");
-    }
+            PictureItem initData = new PictureItem(editText.getText().toString(), string, R.drawable.pic_1, null);
+            //创建一个新的PictureItem类型的实例initData，里面含有三个参数，第一个是EditText输入的内容，第二个是时间日期，第三个是图片，第四个是后面涉及的具体内容
+            pictureItemList.add(initData);、、
+            adapter.notifyDataSetChanged();
+            editText.setText("");
+        }
 
 
 ####    @Override
