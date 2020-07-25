@@ -62,10 +62,10 @@ import java.util.List;
         public void BrushData(EditText editText, String string, PictureItemAdapter adapter) {
         //数据更新方法，参数1是EditText输入的内容，参数2是选择的时间，参数3是PictureItemAdapter类
             PictureItem initData = new PictureItem(editText.getText().toString(), string, R.drawable.pic_1, null);
-            //创建一个新的PictureItem类型的实例initData，里面含有三个参数，第一个是EditText输入的内容，第二个是时间日期，第三个是图片，第四个是后面涉及的具体内容
-            pictureItemList.add(initData);、、
-            adapter.notifyDataSetChanged();
-            editText.setText("");
+            //创建一个新的PictureItem类型的实例initData，里面含有三个参数，第一个是EditText输入的内容，第二个是时间日期，第三个是图片，第四个是后面涉及的“具体内容”
+            pictureItemList.add(initData);    //PictureItem类型的列表增加这个实例作为新的元素
+            adapter.notifyDataSetChanged();    //adapter更新
+            editText.setText("");    //EditText内容更新为空
         }
 
 
