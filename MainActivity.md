@@ -92,22 +92,22 @@ import java.util.List;
             listView.setAdapter(adapter);    //把列表的Item和pictureItemList列表的每一个元素绑定
 
 #### Enter按键监听
-//        //监听myEditText的Enter键，注释掉了的原因是Enter键用来换行了，新增加了Button“添加”按钮来实现该功能
-//        editText.setOnKeyListener(new View.OnKeyListener(){
-//            @Override
-//            public boolean onKey(View view, int keyCode, KeyEvent keyEvent){
-//                if(keyEvent.getAction()==keyEvent.ACTION_DOWN){
-//                    if((keyCode == keyEvent.KEYCODE_DPAD_CENTER) || (keyCode == keyEvent.KEYCODE_ENTER)){
-//                        PictureItem initData = new PictureItem(editText.getText().toString() R.drawable.pic_1);
-//                        pictureItemList.add(initData);
-//                        adapter.notifyDataSetChanged();
-//                        editText.setText("");
-//                        return true;
-//                    }
-//                }
-//                return false;
-//            }
-//        });
+/*      //监听myEditText的Enter键，注释掉了的原因是Enter键用来换行了，新增加了Button“添加”按钮来实现该功能
+        editText.setOnKeyListener(new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent){
+                if(keyEvent.getAction()==keyEvent.ACTION_DOWN){
+                    if((keyCode == keyEvent.KEYCODE_DPAD_CENTER) || (keyCode == keyEvent.KEYCODE_ENTER)){
+                        PictureItem initData = new PictureItem(editText.getText().toString() R.drawable.pic_1);
+                        pictureItemList.add(initData);
+                        adapter.notifyDataSetChanged();
+                        editText.setText("");
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });*/
 
         //新建列表项
         button.setOnClickListener(new View.OnClickListener() {
