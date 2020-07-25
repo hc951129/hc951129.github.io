@@ -91,7 +91,7 @@ import java.util.List;
             //将ArrayAdapter绑定到ListView
             listView.setAdapter(adapter);    //把列表的Item和pictureItemList列表的每一个元素绑定
 
-#### Enter按键监听
+#### Enter按键监听(指的是手机虚拟键盘的Enter键)
 /*      //监听myEditText的Enter键，注释掉了的原因是Enter键用来换行了，新增加了Button“添加”按钮来实现该功能
         editText.setOnKeyListener(new View.OnKeyListener(){
             
@@ -109,14 +109,11 @@ import java.util.List;
                 return false;
             }
         });*/
-
-        //新建列表项
+#### “添加”按钮监听，每次点击新建一个Item项
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Calendar calendar = Calendar.getInstance();
-
 //                日期选择器
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -124,11 +121,9 @@ import java.util.List;
                         date = year + "年" + (month + 1) + "月" + dayOfMonth + "日";
                         String string = date + time + "您有新的日程安排";
                         Toast.makeText(MainActivity.this, string, Toast.LENGTH_SHORT).show();
-
                         BrushData(editText, (date + "\n" + time), adapter);
                     }
-                }
-                        , calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
 
 //                时间选择器
@@ -136,15 +131,14 @@ import java.util.List;
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                         time = hourOfDay + "时" + minute + "分";
-//                        Toast.makeText(MainActivity.this,time,Toast.LENGTH_SHORT).show();
                     }
-                }
-                        , calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+                }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
                 timePickerDialog.show();
             }
         });
 
-//        监听listView的Item的点击键
+#### 监听Item项的点击事件
+//      监听listView的Item的点击键
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -159,7 +153,7 @@ import java.util.List;
             }
         });
 
-
+#### 监听Item项的长按事件
 //        监听listView的Item的长按键
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -167,7 +161,6 @@ import java.util.List;
                 final AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                 dialog.setTitle("提示!");
                 dialog.setMessage("请选择您要做出的改变：");
-//                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.dialog_view, null);
                 dialog.setView(layout);
