@@ -74,23 +74,25 @@ import java.util.List;
         }
 
 
-####    @Override
-####    protected void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+#### 重写OnCreate方法，活动的初始化操作
+        @Override
+        protected void onCreate(final Bundle savedInstanceState) {
+        
+            super.onCreate(savedInstanceState); 
+            setContentView(R.layout.activity_main);
 
-        final PictureItemAdapter adapter = new PictureItemAdapter(MainActivity.this, R.layout.pic_item, pictureItemList);
+            final PictureItemAdapter adapter = new PictureItemAdapter(MainActivity.this, R.layout.pic_item, pictureItemList);
 
-        //获取对UI组件的引用
-        final ListView listView = (ListView) findViewById(R.id.list_view);
-        final EditText editText = (EditText) findViewById(R.id.edit_text);
-//        final TextView textView3 = (TextView) findViewById(R.id.text_view3);
-        Button button = (Button) findViewById(R.id.button);
+            //获取对UI组件的引用
+            final ListView listView = (ListView) findViewById(R.id.list_view);
+            final EditText editText = (EditText) findViewById(R.id.edit_text)；
+            Button button = (Button) findViewById(R.id.button);
 
-        //将ArrayAdapter绑定到ListView
-        listView.setAdapter(adapter);
+            //将ArrayAdapter绑定到ListView
+            listView.setAdapter(adapter);    //把列表的Item和pictureItemList列表的每一个元素绑定
 
-//        //监听myEditText的Enter键
+#### Enter按键监听
+//        //监听myEditText的Enter键，注释掉了的原因是Enter键用来换行了，新增加了Button“添加”按钮来实现该功能
 //        editText.setOnKeyListener(new View.OnKeyListener(){
 //            @Override
 //            public boolean onKey(View view, int keyCode, KeyEvent keyEvent){
