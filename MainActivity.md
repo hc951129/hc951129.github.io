@@ -28,7 +28,7 @@
 
 ### public class MainActivity extends AppCompatActivity {
 
-    //定义了三个成员变量
+        //定义了三个成员变量
     
         private List<PictureItem> pictureItemList = new ArrayList<>();    //用于存储每个Item独立的数据
 
@@ -204,4 +204,4 @@
           }
       });
     }
-}
+    } 
